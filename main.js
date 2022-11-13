@@ -20,13 +20,21 @@ function playCoin (column) {//return void
     coin.classList.add("coin");
     coin.style.backgroundColor = "var(--" + currentTurn + ")";
     coin.style.gridRow = 6 - coinsInColumn[column - 1] + 1;
-    coinsInColumn[column - 1] += 1;
     coin.style.gridColumn = column;
+    coinsInColumn[column - 1] += 1;
+    document.getElementById("board").appendChild(coin);
+    
+    //creat after-image elements
+    const holos = [];
+    for(let i = 0; i < 3; i++) {
+        holos[i] = document.createElement("div");
+        holos[i].style.backgroundColor = "var(--" + currentTurn + ")";
+        coin.appendChild(holos[i]);
+    }
     
     //Prepares for next move
     togglePlayer();//alternate player
     addMoveHistory(column);//pushes move to history
-    document.getElementById("board").appendChild(coin);
 
     //checkWin
     let winState = checkWin(board);

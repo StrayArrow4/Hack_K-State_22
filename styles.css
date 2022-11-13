@@ -1,6 +1,7 @@
 :root {
     --red: red;
     --blue: yellow;
+    --boardColor: rgba(48,255,242,.9);
 }
 
 @font-face {
@@ -11,6 +12,10 @@
 #font-face {
     font-family: walkTheMoonHalftone;
     src: url(Walk_The_Moon_Halftone/walkthemoonhalf.ttf);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 #home {
@@ -25,6 +30,7 @@
     justify-content: center;
     gap: 2rem;
     background-color: gray;
+    z-index: 10;
 }
 
 .homeBtn {
@@ -46,8 +52,15 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 1vw;
-    background-color: rgb(63, 63, 63);
     margin-top: 0;
+    
+    background: rgba(0,160,255,.3);
+    box-shadow: inset 0 -15px 50px 10px rgba(48,255,242,.9);
+    padding: 1rem;
+    border: .4rem solid var(--boardColor);
+    border-radius: 1rem;
+    filter: drop-shadow(2px 0 10px var(--boardColor));
+    backdrop-filter: blur(12px);
 }
 
 .coin {
@@ -56,8 +69,35 @@
     height: 100%;
     border-radius: 50%;
     animation-name: coinDrop;
-    animation-duration: .7s;
-    animation-timing-function: ease-in;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    position: relative;
+}
+
+.coin div {
+    background-color: darkred;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation-name: afterImage;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    position: absolute;
+}
+
+.coin :first-child {
+    animation-delay: 0s;
+    filter: opacity(60%);
+}
+
+.coin :nth-child(2) {
+    animation-delay: .8s;
+    filter: opacity(40%);
+}
+
+.coin :nth-child(3) {
+    animation-delay: 1.4s;
+    filter: opacity(20%);
 }
 
 #buttonContainer {
@@ -91,16 +131,14 @@
         height: calc(95vw / 7);
     }
 }
-  
-
-
-
-
-
-
-
 
 @keyframes coinDrop {
-    from {transform: translate(0, -300px);}
+    from {transform: translate(0, -500px);}
     to {transform: translate(0, 0);}
+}
+
+@keyframes afterImage {
+    0% {transform: translate(0, -15px);}
+    99% {transform: translate(0, -15px);}
+    100% {transform: translate(0, 0);}
 }
