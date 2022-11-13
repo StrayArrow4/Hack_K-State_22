@@ -11,8 +11,44 @@
             src: url(Walk_The_Moon_Expanded/walkthemoonexpand.ttf);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
         main{
+            margin: 0;
             margin-top: 6rem;
+            background-image: url(homeBackground.jpeg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        div {
+            margin: 0;
+        }
+
+        main div:nth-child(odd) {
+            width: 100%;
+            background-color: rgba(20, 20, 20, 0.349);
+        }
+
+        main div:nth-child(even) {
+            background-color: grey;
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 1000px;
         }
 
         h2{
@@ -20,6 +56,7 @@
             font-size: 1.5rem;
             color: yellow;
             filter: drop-shadow(.2rem .2rem .1rem purple);
+            margin-top: 0;
         }
 
         body{
@@ -50,32 +87,52 @@
 <body>
     <button class="homeBtn home" onclick="window.location.href='index.html'">Home</button>
     <main class="content">
-      
-            <h2> Inspiration</h2>
-            <p>wanted to create something familiar to lots but also completely new to us </p>
-            <h2> What it does</h2>
-            <p>pass and play connect 4 with a futuristic glitch-pop theme </p>
-            <h2> How we built it</h2>
-            <p>using javascript we created the functionality of the classic connect 4 game with HTML and CSS we gave the boring Connect 4 game a bright and relaxed theme.</p>
-            <h2> Challenges we ran into</h2>
-            <p>1. had some trouble finding a winning play as well as receiving win screens when no one would have a winning play.</p>
-            <p>2. learning that javascript did not accept 64-bit integers so we ended up learning how to use a new library to convert the 34-bit integers to 64 bit</p>
-            <p>3. some of our styles would not work as intended</p>
-            
-            <h2> Accomplishments that we're proud of</h2>
-            <p>1. Creating a fully-fledged working app.</p>
-            <p>2. making a good-looking app </p>
-            
-            <h2> What we learned</h2>
-           
-            <p>1. learned how to use bit bords
-            <p>2. learned how to represent numbers as 64 bit integers</p>
-            <p>3. learned how to host a website through gethub pages</p>
-            <p>4. learned how to set up a PWA</p>
-            <p>5. learned about CSS animations</p>
-            
-            <h2> What's next for Connect 2077</h2>
-            <p>like our style inspiration from cyberpunk 2077, we will have post-launch patch fixes. Adding an Ai to play against would be a nice improvement.</p>
+        <div>
+            <div class="container">
+                <h2> Inspiration</h2>
+                <p>wanted to create something familiar to lots but also completely new to us </p>
+                <h2> What it does</h2>
+                <p>pass and play connect 4 with a futuristic glitch-pop theme </p>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <h2> How we built it</h2>
+                <p>using javascript we created the functionality of the classic connect 4 game with HTML and CSS we gave the boring Connect 4 game a bright and relaxed theme.</p>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <h2> Challenges we ran into</h2>
+                <p>1. had some trouble finding a winning play as well as receiving win screens when no one would have a winning play.</p>
+                <p>2. learning that javascript did not accept 64-bit integers so we ended up learning how to use a new library to convert the 34-bit integers to 64 bit</p>
+                <p>3. some of our styles would not work as intended</p>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <h2> Accomplishments that we're proud of</h2>
+                <p>1. Creating a fully-fledged working app.</p>
+                <p>2. making a good-looking app </p>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <h2> What we learned</h2>
+                <p>1. learned how to use bit bords
+                    <p>2. learned how to represent numbers as 64 bit integers</p>
+                    <p>3. learned how to host a website through gethub pages</p>
+                    <p>4. learned how to set up a PWA</p>
+                    <p>5. learned about CSS animations</p>
+            </div>
+        </div>
+        <div>    
+            <div class="container">
+                <h2> What's next for Connect 2077</h2>
+                <p>like our style inspiration from cyberpunk 2077, we will have post-launch patch fixes. Adding an Ai to play against would be a nice improvement.</p>
+            </div>
+        </div>
+        </div>
     </main>
 </body>
 </html>
