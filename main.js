@@ -27,7 +27,22 @@ function playCoin (column) {//return void
     togglePlayer();//alternate player
     addMoveHistory(column);//pushes move to history
     document.getElementById("board").appendChild(coin);
-    checkWin();
+    let winState = checkWin(board);
+
+    switch (winState) {
+        case 1:
+            //red wins
+            console.log('red won!!!!!');
+            break;
+        case 2:
+            //blue wins
+            break;
+        case 3:
+            //draw
+            break;
+        default:
+            break;
+    }
 }
 
 //Converts column/row positiion to a number representing a bitboard position
@@ -50,29 +65,30 @@ function addMoveHistory (column) {
 function togglePlayer () {
     if (currentTurn == 'red') {
         currentTurn = 'blue';
+        turnIndicator.innerHTML = "Yellows Turn";
     } else {
         currentTurn = 'red';
+        turnIndicator.innerHTML = "Reds Turn";
     }
-}
-
-function readBoard() {
-    //read red
-    //read blue
-
 }
 
 function checkWin (board) {
-    for (let i = 0; i < 8; i++) {
-        if((board.red >> i) & 0x01 == 1) {
-            //vertical
-            if(((board.red >> i + 1) & 0x01) == 1) {
-
-            }
-        }
+    if(findLongestChain(board.red) > 3)
+    {
+        return 1;
     }
-    //check blue for wins
-    //check if board full (draw)
-    //return result
+    
+    if(findLongestChain(board.blue) > 3)
+    {
+        return 2;
+    }
+
+    if((board.red | board.blue) == 2139062143 )
+    {
+       return 3;
+    }
+
+    return 0;
 }
 
 function buttonHandler(e) {
@@ -84,8 +100,45 @@ function buttonHandler(e) {
     playCoin(column);
 }
 
+function findLongestChain(board) {
+    const start = performance.now();
+    let longestChain = 0;
+    for (let i = 0; i < 64; i++) {
+        if(performance.now() - 500 > start) break;
+        if ((board >> i) & 0x01) {
+            let j = 0;
+            let chain = 1;
+            while((board >> i + j) & 0x01) {
+                if(performance.now() - 500 > start) break;
+                j++;
+                chain++;
+            }
+            if (longestChain < chain) longestChain = chain;
+            j = 0;
+            while((board >> i + j) & 0x01){
+                if(performance.now() - 500 > start) break;
+                j += 8;
+                chain++;
+            }
+            if(longestChain < chain) longestChain = chain;
+
+            j = 0;
+            while((board >> i + j) & 0x01){
+                if(performance.now() - 500 > start) break;
+                j += 9;
+                chain++;
+            }
+            if(longestChain < chain) longestChain = chain;
+        }
+    }
+    return longestChain;
+}
+
+
+//Start of Execution
 const button = document.getElementsByClassName('button');
 const buttons = Array.from(button);
+const turnIndicator = document.getElementById('turnIndicator')
 
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];
@@ -95,24 +148,3 @@ let currentTurn = 'red';
 buttons.forEach(button => {
     button.addEventListener('click', buttonHandler);
 })
-
-
-
-
-
-
-function findLongestChain(board) {
-    let longestChain = 0;
-    for (let i = 0; i < 64; i++) {
-        if ((board >> i) & 0x01 == 1) {
-            let j = 0;
-            let chain = 1;
-            while((board >> i + j) & 0x01 == 1) {
-                j++;
-                chain++;
-            }
-            if (longestChain < chain) longestChain = chain;
-            
-        }
-    }
-}

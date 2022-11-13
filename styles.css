@@ -11,7 +11,7 @@
     grid-template-rows: repeat(7, 1fr);
     gap: 1vw;
     background-color: rgb(63, 63, 63);
-    margin-top: 100px;
+    margin-top: 0;
 }
 
 .coin {
