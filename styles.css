@@ -148,17 +148,20 @@ h2 {
 }
 
 .coin :first-child {
+    animation-name: afterImage1;
     animation-delay: 0s;
     filter: opacity(60%);
 }
 
 .coin :nth-child(2) {
-    animation-delay: .8s;
+    animation-name: afterImage2;
+    animation-delay: 0s;
     filter: opacity(40%);
 }
 
 .coin :nth-child(3) {
-    animation-delay: 1.4s;
+    animation-name: afterImage3;
+    animation-delay: 0s;
     filter: opacity(20%);
 }
 
@@ -171,7 +174,6 @@ h2 {
     gap: 1vw;
     justify-items: center;
     align-items: center;
-    background-color:rgb(63, 63, 63);
     padding: 0 1.3rem;
 }
 
@@ -232,7 +234,9 @@ h2 {
 .indicatorBox.left {
     right: 15px;
     color: var(--red);
-    text-align: right;   
+    text-align: right;
+    border-color: var(--red);
+    filter: drop-shadow(0 0 .5rem var(--red));
 }
 
 .indicatorBox.right {
@@ -267,5 +271,23 @@ h2 {
 @keyframes afterImage {
     0% {transform: translate(0, -15px);}
     99% {transform: translate(0, -15px);}
+    100% {transform: translate(0, 0);}
+}
+
+@keyframes afterImage1 {
+    0% {transform: translate(0, -15px);}
+    99% {transform: translate(0, -15px);}
+    100% {transform: translate(0, 0);}
+}
+
+@keyframes afterImage2 {
+    0% {transform: translate(0, -30px);}
+    99% {transform: translate(0, -30px);}
+    100% {transform: translate(0, 0);}
+}
+
+@keyframes afterImage3 {
+    0% {transform: translate(0, -45px);}
+    99% {transform: translate(0, -45px);}
     100% {transform: translate(0, 0);}
 }
