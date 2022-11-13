@@ -233,8 +233,7 @@ const turnIndicator = document.getElementById('turnIndicator');
 const home = document.getElementById('home');
 const winScreen = document.getElementById('winScreen');
 const winMsg = document.getElementById('winMsg');
-const addBtn = document.querySelector(".add-button");
-
+const addBtn = document.getElementById('addBtn');
 let deferredPrompt;
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];
