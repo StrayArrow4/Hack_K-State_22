@@ -187,11 +187,15 @@ function findLongestChain(board) {
     return longestChain;
 }
 
+function startGame() {
+    home.style.display = "none";
+}
 
 //Start of Execution
 const button = document.getElementsByClassName('button');
 const buttons = Array.from(button);
-const turnIndicator = document.getElementById('turnIndicator')
+const turnIndicator = document.getElementById('turnIndicator');
+const home = document.getElementById('home');
 
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];

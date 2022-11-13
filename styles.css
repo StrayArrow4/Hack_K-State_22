@@ -3,6 +3,42 @@
     --blue: yellow;
 }
 
+@font-face {
+    font-family: walkTheMoonExpanded;
+    src: url(Walk_The_Moon_Expanded/walkthemoonexpand.ttf);
+}
+
+#font-face {
+    font-family: walkTheMoonHalftone;
+    src: url(Walk_The_Moon_Halftone/walkthemoonhalf.ttf);
+}
+
+#home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background-color: gray;
+}
+
+.homeBtn {
+    width: 10rem;
+    height: 5rem;
+    font-size: 1.5rem;
+    background-color: black;
+    border: 4px solid yellow;
+    border-radius: .7rem;
+    font-family: walkTheMoonExpanded;
+    color: yellow;
+    filter: drop-shadow(.3rem .5rem 1rem yellow);
+}
+
 .board {
     width: 95vw;
     height: 95vw;
@@ -44,7 +80,18 @@
     background-color: aqua;
 }
 
+@media (max-width: 600px), screen and (orientation: portrait) {
+    .board {
+        width: 95vw;
+        height: 95vw;
+    }
 
+    #buttonContainer {
+        width: 95vw;
+        height: calc(95vw / 7);
+    }
+}
+  
 
 
 
