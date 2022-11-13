@@ -19,6 +19,7 @@ function playCoin (column) {//return void
     const coin = document.createElement("div");
     coin.classList.add("coin");
     coin.style.backgroundColor = "var(--" + currentTurn + ")";
+    coin.style.filter = "drop-shadow(0 0 .5rem var(--" + currentTurn +"))"
     coin.style.gridRow = 6 - coinsInColumn[column - 1] + 1;
     coin.style.gridColumn = column;
     coinsInColumn[column - 1] += 1;
@@ -42,14 +43,20 @@ function playCoin (column) {//return void
         case 1:
             //red wins
             console.log('red won!!!!!');
+            winScreen.style.display = 'flex';
+            winMsg.innerHTML = `Pink Won!`;
             break;
         case 2:
             //blue wins
             console.log('blue won!');
+            winScreen.style.display = 'flex';
+            winMsg.innerHTML = `Yellow Won!`;
             break;
         case 3:
             //draw
             console.log('It is a draw!');
+            winScreen.style.display = 'flex';
+            winMsg.innerHTML = `Draw!`;
             break;
         default:
             break;
@@ -197,6 +204,26 @@ function findLongestChain(board) {
 
 function startGame() {
     home.style.display = "none";
+    resetGame();
+    winScreen.style.display = "none";
+}
+
+function resetGame() {
+    coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
+    moveQueue = [];
+    board = {red: 0n, blue: 0n};
+    currentTurn = 'red';
+    const coin = document.getElementsByClassName('coin');
+    const coins = Array.from(coin);
+    coins.forEach(e => {
+        e.remove();
+    })
+}
+
+function reset() {
+    home.style.display = "flex";
+    winScreen.style.display = "none";
+    resetGame();
 }
 
 //Start of Execution
@@ -204,11 +231,14 @@ const button = document.getElementsByClassName('button');
 const buttons = Array.from(button);
 const turnIndicator = document.getElementById('turnIndicator');
 const home = document.getElementById('home');
+const winScreen = document.getElementById('winScreen');
+const winMsg = document.getElementById('winMsg');
 
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];
 let board = {red: 0n, blue: 0n};
 let currentTurn = 'red';
+
 
 buttons.forEach(button => {
     button.addEventListener('click', buttonHandler);

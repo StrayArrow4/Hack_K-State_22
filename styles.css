@@ -1,5 +1,5 @@
 :root {
-    --red: red;
+    --red: #f032fa;
     --blue: yellow;
     --boardColor: rgba(48,255,242,.9);
 }
@@ -16,6 +16,10 @@
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(58, 58, 58);
 }
 
 #home {
@@ -56,13 +60,35 @@ h1 {
     filter: drop-shadow(.5rem .5rem .1rem purple);
 }
 
+#winScreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background-color: #0006;
+}
+
+h2 {
+    font-family: walkTheMoonExpanded;
+    font-size: 2rem;
+    color: yellow;
+    filter: drop-shadow(.2rem .2rem .1rem purple);
+}
+
 .board {
     width: 95vw;
     height: 95vw;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
-    gap: 1vw;
+    gap: 1.5vw;
     margin-top: 0;
     
     background: rgba(0,160,255,.3);
@@ -83,7 +109,7 @@ h1 {
     animation-duration: 1s;
     animation-timing-function: linear;
     position: relative;
-}
+} 
 
 .coin div {
     background-color: darkred;
