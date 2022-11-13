@@ -24,25 +24,36 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
     background-color: gray;
-    z-index: 10;
+    background-image: url(homeBackground.jpeg);
+    background-position: center;
+    background-size: cover;
+    /* add inverted vignette */
+}
+
+h1 {
+    font-family: walkTheMoonExpanded;
+    font-size: 2.5rem;
+    color: yellow;
+    filter: drop-shadow(.2rem .2rem .1rem purple);
 }
 
 .homeBtn {
     width: 10rem;
     height: 5rem;
     font-size: 1.5rem;
-    background-color: black;
-    border: 4px solid yellow;
+    background-color: yellow;
+    border: 6px solid black;
     border-radius: .7rem;
     font-family: walkTheMoonExpanded;
-    color: yellow;
-    filter: drop-shadow(.3rem .5rem 1rem yellow);
+    color: black;
+    filter: drop-shadow(.5rem .5rem .1rem purple);
 }
 
 .board {
@@ -110,6 +121,7 @@
     justify-items: center;
     align-items: center;
     background-color:rgb(63, 63, 63);
+    padding: 0 1.3rem;
 }
 
 .button {
