@@ -10,9 +10,9 @@ function playCoin (column) {//return void
     let row = coinsInColumn[column - 1];
     //console.log(`${row}`)
     if (currentTurn == 'red') {
-        board.red = board.red | BigInt(toBitPosition(column, row));
+        board.red = board.red | toBitPosition(column, row);
     } else {
-        board.blue = board.blue | BigInt(toBitPosition(column, row));
+        board.blue = board.blue | toBitPosition(column, row);
     }
 
     //create HTML coin element (displays coin for user)
@@ -27,8 +27,9 @@ function playCoin (column) {//return void
     togglePlayer();//alternate player
     addMoveHistory(column);//pushes move to history
     document.getElementById("board").appendChild(coin);
-    let winState = checkWin(board);
 
+    //checkWin
+    let winState = checkWin(board);
     switch (winState) {
         case 1:
             //red wins
@@ -36,11 +37,11 @@ function playCoin (column) {//return void
             break;
         case 2:
             //blue wins
-            console.log('blue won!')
+            console.log('blue won!');
             break;
         case 3:
             //draw
-            console.log('It is a draw!')
+            console.log('It is a draw!');
             break;
         default:
             break;
@@ -49,14 +50,43 @@ function playCoin (column) {//return void
 
 //Converts column/row positiion to a number representing a bitboard position
 function toBitPosition (column, row) {
-    let bitVal = 0x000000000000001;
-    bitVal = bitVal << (column - 1) * 8;
-    bitVal = bitVal << row;
+    let bitVal = 1n;
+    bitVal = bitVal << BigInt((column - 1) * 8);
+    bitVal = bitVal << BigInt(row);
     return bitVal;
 }
 
 function undoLastMove () {
+    //revert active player
+    togglePlayer();
+    //get position of last move
+    let lastMoveCol = moveQueue.pop();
+    let lastMoveRow = coinsInColumn[lastMoveCol - 1] - 1;
+    coinsInColumn[lastMoveCol - 1] -= 1;
+    let lastBitPos = toBitPosition(lastMoveCol, lastMoveRow);
+    console.log(lastMoveRow);
+    console.log(lastBitPos);
+    //clear from bitboard
+    if (currentTurn == 'red') {
+        
+        board.red = board.red & (~lastBitPos);
+    } else {
+        board.blue = board.blue & (~lastBitPos);
+    }
+    //destroy Coin html element
+    const coin = document.getElementsByClassName('coin');
+    const coins = Array.from(coin);
 
+    console.log(`Searching for:      Column: ${lastMoveCol}      Row: ${lastMoveRow}`)
+
+    coins.forEach(e => {
+        let row = 8 - e.style.gridRow;
+        let column = e.style.gridColumn;
+
+        if((column == (lastMoveCol)) && (row == (lastMoveRow + 1))) {
+            e.remove();
+        }
+    })
 }
 
 function addMoveHistory (column) {
@@ -85,11 +115,10 @@ function checkWin (board) {
         return 2;
     }
 
-    if((board.red | board.blue) == 0x000000001111111011111110111111101111111011111110111111101111111n )
+    if((board.red | board.blue) == 35887507618889599n )
     {
        return 3;
     }
-
     return 0;
 }
 
