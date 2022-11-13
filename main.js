@@ -75,12 +75,26 @@ function checkWin (board) {
     //return result
 }
 
+function buttonHandler(e) {
+    const button = e.target;
+    let column = button.style.gridColumn;
+    console.log(`The buttons column is ${column}`);
+    column = parseInt(column, 10)
+    console.log(`The buttons column is ${column}`);
+    playCoin(column);
+}
+
+const button = document.getElementsByClassName('button');
+const buttons = Array.from(button);
+
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];
 let board = {red: 0, blue: 0};
 let currentTurn = 'red';
 
-
+buttons.forEach(button => {
+    button.addEventListener('click', buttonHandler);
+})
 
 
 
