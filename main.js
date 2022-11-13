@@ -8,11 +8,11 @@ function playCoin (column) {//return void
     
     //update the bitboard
     let row = coinsInColumn[column - 1];
-    console.log(`${row}`)
+    //console.log(`${row}`)
     if (currentTurn == 'red') {
-        board.red = board.red | toBitPosition(column, row);
+        board.red = board.red | BigInt(toBitPosition(column, row));
     } else {
-        board.blue = board.blue | toBitPosition(column, row);
+        board.blue = board.blue | BigInt(toBitPosition(column, row));
     }
 
     //create HTML coin element (displays coin for user)
@@ -36,9 +36,11 @@ function playCoin (column) {//return void
             break;
         case 2:
             //blue wins
+            console.log('blue won!')
             break;
         case 3:
             //draw
+            console.log('It is a draw!')
             break;
         default:
             break;
@@ -83,7 +85,7 @@ function checkWin (board) {
         return 2;
     }
 
-    if((board.red | board.blue) == 2139062143 )
+    if((board.red | board.blue) == 0x000000001111111011111110111111101111111011111110111111101111111n )
     {
        return 3;
     }
@@ -94,39 +96,67 @@ function checkWin (board) {
 function buttonHandler(e) {
     const button = e.target;
     let column = button.style.gridColumn;
-    console.log(`The buttons column is ${column}`);
+    //console.log(`The buttons column is ${column}`);
     column = parseInt(column, 10)
-    console.log(`The buttons column is ${column}`);
+    //console.log(`The buttons column is ${column}`);
     playCoin(column);
 }
 
 function findLongestChain(board) {
     const start = performance.now();
+    let chain = 0;
     let longestChain = 0;
     for (let i = 0; i < 64; i++) {
         if(performance.now() - 500 > start) break;
-        if ((board >> i) & 0x01) {
-            let j = 0;
-            let chain = 1;
-            while((board >> i + j) & 0x01) {
+        if ((board >> BigInt(i)) & 1n) {
+            //check win |
+            let j = 1;
+            chain = 1;
+            while((board >> BigInt(i + j)) & 1n) {
                 if(performance.now() - 500 > start) break;
                 j++;
                 chain++;
+                if (chain > 3) {
+                    console.log(`Found | win at cell ${i}`);
+                }
             }
             if (longestChain < chain) longestChain = chain;
-            j = 0;
-            while((board >> i + j) & 0x01){
+
+            //check win /
+            j = 7;
+            chain = 1;
+            while((board >> BigInt(i + j)) & 1n) {
+                if(performance.now() - 500 > start) break;
+                j += 7;
+                chain++;
+                if (chain > 3) {
+                    console.log(`Found / win at cell ${i}`);
+                }
+            }
+
+            //check win -
+            j = 8;
+            chain = 1;
+            while((board >> BigInt(i + j)) & 1n) {
                 if(performance.now() - 500 > start) break;
                 j += 8;
                 chain++;
+                if (chain > 3) {
+                    console.log(`Found - win at cell ${i}`);
+                }
             }
             if(longestChain < chain) longestChain = chain;
 
-            j = 0;
-            while((board >> i + j) & 0x01){
+            //check win \
+            j = 9;
+            chain = 1;
+            while((board >> BigInt(i + j)) & 1n){
                 if(performance.now() - 500 > start) break;
                 j += 9;
                 chain++;
+                if (chain > 3) {
+                    console.log(`Found \ win at cell ${i}`);
+                }
             }
             if(longestChain < chain) longestChain = chain;
         }
@@ -142,7 +172,7 @@ const turnIndicator = document.getElementById('turnIndicator')
 
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];
-let board = {red: 0, blue: 0};
+let board = {red: 0n, blue: 0n};
 let currentTurn = 'red';
 
 buttons.forEach(button => {
