@@ -64,11 +64,8 @@ function undoLastMove () {
     let lastMoveRow = coinsInColumn[lastMoveCol - 1] - 1;
     coinsInColumn[lastMoveCol - 1] -= 1;
     let lastBitPos = toBitPosition(lastMoveCol, lastMoveRow);
-    console.log(lastMoveRow);
-    console.log(lastBitPos);
     //clear from bitboard
     if (currentTurn == 'red') {
-        
         board.red = board.red & (~lastBitPos);
     } else {
         board.blue = board.blue & (~lastBitPos);
@@ -76,12 +73,9 @@ function undoLastMove () {
     //destroy Coin html element
     const coin = document.getElementsByClassName('coin');
     const coins = Array.from(coin);
-
-    console.log(`Searching for:      Column: ${lastMoveCol}      Row: ${lastMoveRow}`)
-
     coins.forEach(e => {
-        let row = 8 - e.style.gridRow;
-        let column = e.style.gridColumn;
+        let row = 8 - parseInt(e.style.gridRow);
+        let column = parseInt(e.style.gridColumn);
 
         if((column == (lastMoveCol)) && (row == (lastMoveRow + 1))) {
             e.remove();
