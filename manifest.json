@@ -1,5 +1,7 @@
 {
     "name": "Connect 2077",
+    "short_name": "Connect",
+    "description": "Download to play connect 4 with a glitch-pop theme no internet required!",
     "start_url": "index.html",
     "icons": [
         {
@@ -28,7 +30,7 @@
         }
     ],
     "theme_color": "#000000",
-    "background_color": "#FFFFFF",
+    "background_color": "#FFF",
     "display": "fullscreen",
     "orientation": "portrait"
 }
