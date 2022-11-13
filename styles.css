@@ -98,6 +98,15 @@ h2 {
     filter: drop-shadow(.2rem .2rem .1rem purple);
 }
 
+.gameHolder {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .board {
     width: 95vw;
     height: 95vw;
@@ -172,6 +181,70 @@ h2 {
     border-radius: 50%;
     grid-row: 1;
     background-color: aqua;
+}
+
+.indicatorHolder {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.turnIndicatorHolder {
+    display:flex;
+    align-items: center;
+    gap: -30px;
+}
+
+.turnIndicator {
+    display: inline-block;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+
+}
+
+.turnIndicator.red {
+    background-color: var(--red);
+    filter: drop-shadow(0 0 .5rem var(--red));
+}
+
+.turnIndicator.blue {
+    background-color: var(--blue);
+    filter: drop-shadow(0 0 .5rem var(--blue));
+}
+
+.indicatorBox {
+    display: inline-block;
+    z-index: -1;
+    width: 110px;
+    height: 50px;
+    border: 4px solid black;
+    border-radius: .4rem;
+    position: relative;
+    text-align: center;
+    line-height: calc(50px - (1rem / 2));
+    font-size: .9rem;
+    font-family: walkTheMoonExpanded;
+    padding: 0 .75rem;
+}
+
+.indicatorBox.left {
+    right: 15px;
+    color: var(--red);
+    text-align: right;   
+}
+
+.indicatorBox.right {
+    right: -15px;
+    color: var(--blue);
+    text-align: left;
+}
+
+.undoBtn {
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
 }
 
 @media (max-width: 600px), screen and (orientation: portrait) {

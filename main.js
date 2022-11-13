@@ -107,9 +107,17 @@ function togglePlayer () {
     if (currentTurn == 'red') {
         currentTurn = 'blue';
         turnIndicator.innerHTML = "Yellows Turn";
+        yellowIndicator.style.borderColor = "var(--blue)";
+        yellowIndicator.style.filter = "drop-shadow(0 0 .5rem var(--blue))"
+        pinkIndicator.style.borderColor = "black";
+        pinkIndicator.style.filter = "none";
     } else {
         currentTurn = 'red';
         turnIndicator.innerHTML = "Reds Turn";
+        yellowIndicator.style.borderColor = "black";
+        yellowIndicator.style.filter = "none";
+        pinkIndicator.style.borderColor = "var(--red)";
+        pinkIndicator.style.filter = "drop-shadow(0 0 .5rem var(--red))"
     }
 }
 
@@ -234,6 +242,9 @@ const home = document.getElementById('home');
 const winScreen = document.getElementById('winScreen');
 const winMsg = document.getElementById('winMsg');
 const addBtn = document.getElementById('addBtn');
+const pinkIndicator = document.getElementById('pinkInd');
+const yellowIndicator = document.getElementById('yellowInd');
+
 let deferredPrompt;
 let coinsInColumn = [0, 0, 0, 0, 0, 0, 0];
 let moveQueue = [];

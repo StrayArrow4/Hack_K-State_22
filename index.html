@@ -24,10 +24,16 @@
         <button class="homeBtn" onclick="reset()">Home</button>
         <button class="homeBtn" onclick="startGame()">New Game</button>
     </div>
-    <div>
-        <div>
+    <button class="homeBtn home">Home</button>
+    <div class="gameHolder">
+    <div class="indicatorHolder">
+        <div class="turnIndicatorHolder">
+            <div class="turnIndicator red"></div>
+            <div id="pinkInd" class="indicatorBox left">Pink</div>
         </div>
-        <div>
+        <div class="turnIndicatorHolder">
+            <div id="yellowInd" class="indicatorBox right">Yellow</div>
+            <div class="turnIndicator blue"></div>
         </div>
     </div>
     <div id="board" class="board">
@@ -42,9 +48,10 @@
         <div class="button" style="grid-column: 7"></div>
     </div>
     <div>
-        <h3 id="turnIndicator">Player Turn</h3>
+        <h3 id="turnIndicator" style="display: none;">Player Turn</h3>
     </div>
-    <button class="homeBtn" onclick="undoLastMove()">Undo</button>
+    </div>
+    <button class="homeBtn undoBtn" onclick="undoLastMove()">Undo</button>
 </body>
 <script src="main.js"></script>
 <script>
