@@ -175,6 +175,7 @@ h2 {
     justify-items: center;
     align-items: center;
     padding: 0 1.3rem;
+    margin-top: 1rem;
 }
 
 .button {
@@ -183,6 +184,7 @@ h2 {
     border-radius: 50%;
     grid-row: 1;
     background-color: aqua;
+    filter: drop-shadow(0 0 .5rem aqua)
 }
 
 .indicatorHolder {
@@ -247,8 +249,13 @@ h2 {
 
 .undoBtn {
     position: absolute;
-    left: 10px;
-    bottom: 12px;
+    right: 15px;
+    top: 10px;
+}
+
+.homeBtn.home {
+    z-index: 2;
+    position: fixed;
 }
 
 @media (max-width: 600px), screen and (orientation: portrait) {

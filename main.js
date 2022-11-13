@@ -179,6 +179,7 @@ function findLongestChain(board) {
                     console.log(`Found / win at cell ${i}`);
                 }
             }
+            if (longestChain < chain) longestChain = chain;
 
             //check win -
             j = 8;
@@ -226,6 +227,10 @@ function resetGame() {
     coins.forEach(e => {
         e.remove();
     })
+    yellowIndicator.style.borderColor = "black";
+    yellowIndicator.style.filter = "none";
+    pinkIndicator.style.borderColor = "var(--red)";
+    pinkIndicator.style.filter = "drop-shadow(0 0 .5rem var(--red))"
 }
 
 function reset() {
