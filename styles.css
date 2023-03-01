@@ -20,6 +20,7 @@
 
 body {
     background-color: rgb(58, 58, 58);
+    overflow: hidden;
 }
 
 #home {
@@ -99,23 +100,23 @@ h2 {
 }
 
 .gameHolder {
-    position: absolute;
-    top: 0;
+    top: 2;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .board {
-    width: 95vw;
-    height: 95vw;
+    width: 70vh;
+    height: 70vh;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 1.5vw;
     margin-top: 0;
-    
     background: rgba(0,160,255,.3);
     box-shadow: inset 0 -15px 50px 10px rgba(48,255,242,.9);
     padding: 1rem;
@@ -166,8 +167,8 @@ h2 {
 }
 
 #buttonContainer {
-    width: 95vw;
-    height: calc(95vw / 7);
+    width: 70vh;
+    height: calc(70vh / 7);
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr, 2px;
@@ -248,7 +249,7 @@ h2 {
 }
 
 .undoBtn {
-    position: absolute;
+    position: fixed;
     right: 15px;
     top: 10px;
 }
@@ -263,10 +264,19 @@ h2 {
         width: 95vw;
         height: 95vw;
     }
+    .gameHolder {
+        position: absolute;
+    }
 
     #buttonContainer {
         width: 95vw;
         height: calc(95vw / 7);
+    }
+}
+
+@media (max-width: 330px), screen and (orientation: portrait) {
+    :root {
+        font-size: 15px;
     }
 }
 
